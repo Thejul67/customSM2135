@@ -1,12 +1,12 @@
-#include "customSM2135.h"
+#include "sm2135.h"
 #include "esphome/core/log.h"
 
 // Tnx to the work of https://github.com/arendst (Tasmota) for making the initial version of the driver
 
 namespace esphome {
-namespace customSM2135 {
+namespace sm2135 {
 
-static const char *const TAG = "customSM2135";
+static const char *const TAG = "sm2135";
 
 static const uint8_t SM2135_ADDR_MC = 0xC0;  // Max current register
 static const uint8_t SM2135_ADDR_CH = 0xC1;  // RGB or CW channel select register
@@ -33,7 +33,7 @@ static const uint8_t SM2135_60MA = 0x0A;
 
 static const uint8_t SM2135_CURRENT = (SM2135_20MA << 4) | SM2135_10MA;
 
-void customSM2135::setup() {
+void SM2135::setup() {
   ESP_LOGCONFIG(TAG, "Setting up SM2135OutputComponent...");
   this->data_pin_->setup();
   this->data_pin_->digital_write(true);
@@ -41,13 +41,13 @@ void customSM2135::setup() {
   this->clock_pin_->digital_write(true);
   this->pwm_amounts_.resize(5, 0);
 }
-void customSM2135::dump_config() {
+void SM2135::dump_config() {
   ESP_LOGCONFIG(TAG, "SM2135:");
   LOG_PIN("  Data Pin: ", this->data_pin_);
   LOG_PIN("  Clock Pin: ", this->clock_pin_);
 }
 
-void customSM2135::loop() {
+void SM2135::loop() {
   if (!this->update_)
     return;
 

@@ -2,14 +2,14 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import output
 from esphome.const import CONF_CHANNEL, CONF_ID
-from . import customSM2135
+from . import SM2135
 
-DEPENDENCIES = ["customSM2135"]
+DEPENDENCIES = ["sm2135"]
 CODEOWNERS = ["@BoukeHaarsma23"]
 
 Channel = SM2135.class_("Channel", output.FloatOutput)
 
-CONF_SM2135_ID = "customSM2135_id"
+CONF_SM2135_ID = "sm2135_id"
 CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
     {
         cv.GenerateID(CONF_SM2135_ID): cv.use_id(SM2135),

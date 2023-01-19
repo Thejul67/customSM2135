@@ -6,9 +6,9 @@
 #include <vector>
 
 namespace esphome {
-namespace customSM2135 {
+namespace sm2135 {
 
-class customSM2135 : public Component {
+class SM2135 : public Component {
  public:
   class Channel;
 
